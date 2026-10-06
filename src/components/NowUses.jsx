@@ -43,7 +43,7 @@ export default function NowUses() {
         </p>
 
         <motion.div
-          className="mt-11 grid grid-cols-3 grid-rows-2 gap-5"
+          className="mt-11 grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-5"
           variants={stagger}
           initial="hidden"
           whileInView="show"
@@ -51,7 +51,7 @@ export default function NowUses() {
         >
           <motion.div
             variants={fadeUp}
-            className="col-span-2 row-span-2 bg-ink rounded-[20px] p-6 relative overflow-hidden flex flex-col"
+            className="md:col-span-2 md:row-span-2 bg-ink rounded-[20px] p-6 relative overflow-hidden flex flex-col"
           >
             <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-orange/25 blur-3xl" />
             <div className="relative flex items-center justify-between flex-wrap gap-2">

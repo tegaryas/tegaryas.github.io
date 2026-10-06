@@ -116,7 +116,7 @@ export default function DevPortfolio() {
         </p>
 
         <motion.div
-          className="mt-11 grid grid-cols-3 gap-5"
+          className="mt-11 grid grid-cols-1 md:grid-cols-3 gap-5"
           variants={stagger}
           initial="hidden"
           whileInView="show"
@@ -153,7 +153,7 @@ export default function DevPortfolio() {
               </span>
               <LuUsers size={18} className="text-white/30" />
             </div>
-            <div className="relative text-[44px] font-extrabold text-orange mt-5.5 tracking-[-1px]">
+            <div className="relative text-[44px] md:text-[30px] lg:text-[44px] font-extrabold text-orange mt-5.5 tracking-[-1px]">
               <ImpactCount to={500000} />+
             </div>
             <div className="relative text-[13px] text-white/60 mt-2.5 leading-relaxed">
@@ -223,7 +223,7 @@ export default function DevPortfolio() {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="col-span-2">
+          <motion.div variants={fadeUp} className="md:col-span-2">
             <StepCard
               tag="Build process"
               steps={processSteps}

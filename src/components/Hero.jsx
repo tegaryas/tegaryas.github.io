@@ -88,9 +88,9 @@ export default function Hero() {
           </motion.div>
 
           <motion.div variants={fadeUp} className="mt-14">
-            <div className="text-[42px] font-extrabold leading-[1.25] tracking-[-0.5px] flex items-center flex-wrap gap-3.5 text-ink">
+            <div className="text-[28px] sm:text-[42px] font-extrabold leading-[1.25] tracking-[-0.5px] flex items-center flex-wrap gap-3.5 text-ink">
               Hi, I&rsquo;m{" "}
-              <span className="w-20 h-20 rounded-full border-[3px] border-white shadow-[0_0_0_1px_#ececE7] overflow-hidden">
+              <span className="w-14 h-14 sm:w-20 sm:h-20 rounded-full border-[3px] border-white shadow-[0_0_0_1px_#ececE7] overflow-hidden">
                 <img
                   src="/images/potrait.png"
                   alt="Tegar Yasindra"
@@ -99,11 +99,11 @@ export default function Hero() {
               </span>
               Tegar Yasindra!
             </div>
-            <div className="text-[42px] font-extrabold leading-[1.25] tracking-[-0.5px] flex items-center flex-wrap gap-3.5">
+            <div className="text-[28px] sm:text-[42px] font-extrabold leading-[1.25] tracking-[-0.5px] flex items-center flex-wrap gap-3.5">
               <span className="text-muted">I&rsquo;m a</span> Fullstack
               Developer <span className="text-muted">at</span>
             </div>
-            <div className="text-[42px] font-extrabold leading-[1.25] tracking-[-0.5px] flex items-center flex-wrap gap-3.5">
+            <div className="text-[28px] sm:text-[42px] font-extrabold leading-[1.25] tracking-[-0.5px] flex items-center flex-wrap gap-3.5">
               <span className="text-orange">Fintelite.</span>
               <span className="inline-flex items-center gap-2 bg-white border border-card-border rounded-full px-4 py-2 text-sm font-semibold text-ink ml-2">
                 <span className="w-2 h-2 rounded-full bg-[#2ecc71] animate-pulse" />
@@ -131,7 +131,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          className="mt-11 grid grid-cols-3 grid-rows-2 gap-5"
+          className="mt-11 grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-5"
           variants={stagger}
           initial="hidden"
           whileInView="show"
@@ -139,7 +139,7 @@ export default function Hero() {
         >
           <motion.div
             variants={fadeUp}
-            className={`${cardClass} min-h-57.5 col-start-1 row-start-1`}
+            className={`${cardClass} min-h-57.5 md:col-start-1 md:row-start-1`}
           >
             <span className={tagClass}>My experience</span>
             <motion.div
@@ -172,7 +172,7 @@ export default function Hero() {
 
           <motion.div
             variants={fadeUp}
-            className={`${cardClass} min-h-57.5 col-start-2 row-start-1 flex flex-col`}
+            className={`${cardClass} min-h-57.5 md:col-start-2 md:row-start-1 flex flex-col`}
           >
             <span className={`${tagClass} self-start`}>My playlist</span>
             <iframe
@@ -188,7 +188,7 @@ export default function Hero() {
 
           <motion.div
             variants={fadeUp}
-            className={`${cardClass} min-h-57.5 col-start-3 row-start-1`}
+            className={`${cardClass} min-h-57.5 md:col-start-3 md:row-start-1`}
           >
             <span className={tagClass}>Achievement</span>
             <div className="mt-5">
@@ -206,7 +206,7 @@ export default function Hero() {
 
           <motion.div
             variants={fadeUp}
-            className={`${cardClass} max-h-65 col-start-1 row-start-2 p-0!`}
+            className={`${cardClass} h-65 md:h-auto max-h-65 md:col-start-1 md:row-start-2 p-0!`}
           >
             <span className={`${tagClass} absolute top-3.5 left-3.5 z-10`}>
               Map
@@ -246,7 +246,7 @@ export default function Hero() {
 
           <motion.div
             variants={fadeUp}
-            className="col-start-2 col-span-2 row-start-2"
+            className="md:col-start-2 md:col-span-2 md:row-start-2"
           >
             <StepCard
               tag="How I work"

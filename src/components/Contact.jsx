@@ -29,19 +29,19 @@ export default function Contact() {
         </p>
 
         <motion.div
-          className="mt-6 bg-white border border-card-border rounded-[20px] flex overflow-hidden"
+          className="mt-6 bg-white border border-card-border rounded-[20px] flex flex-col md:flex-row overflow-hidden"
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={viewport}
         >
-          <div className="w-[36%] bg-ink text-white px-8 py-9">
+          <div className="md:w-[36%] bg-ink text-white px-6 sm:px-8 py-9">
             <h3 className="text-[22px] font-extrabold m-0 mb-2.5 tracking-[-0.3px]">
               Say hello
             </h3>
             <p className="text-[13px] text-[#b9b6ae] leading-relaxed m-0 mb-7">
-              Fullstack developer based in Balikpapan, working across Go,
-              Python, and Flutter.
+              Fullstack developer based in Bekasi, working across Go, Python,
+              and Flutter.
             </p>
 
             <div className="flex items-center gap-2.5 text-[13px] text-[#e9e7e2] mb-3.5">
@@ -103,7 +103,7 @@ export default function Contact() {
                   strokeWidth="1.6"
                 />
               </svg>
-              Balikpapan, East Kalimantan, Indonesia
+              Bekasi, West Java, Indonesia
             </div>
             <div className="flex items-center gap-2.5 text-[13px] text-[#e9e7e2] mb-3.5">
               <svg
@@ -146,9 +146,9 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="flex-1 px-10 py-9">
+          <div className="flex-1 px-6 sm:px-10 py-9">
             <form onSubmit={handleSubmit}>
-              <div className="flex gap-3.5 mb-3.5">
+              <div className="flex flex-col sm:flex-row gap-3.5 mb-3.5">
                 <input
                   className={fieldClass}
                   type="text"
@@ -172,12 +172,12 @@ export default function Contact() {
                   required
                 />
               </div>
-              <div className="flex gap-3 mt-1.5">
+              <div className="flex flex-wrap gap-3 mt-1.5">
                 <motion.button
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
                   type="submit"
-                  className="bg-ink text-white border-none px-7 py-3.5 rounded-full text-sm font-bold cursor-pointer"
+                  className="bg-ink text-white border-none px-5 sm:px-7 py-3.5 rounded-full text-sm font-bold cursor-pointer"
                 >
                   Send message
                 </motion.button>
@@ -187,7 +187,7 @@ export default function Contact() {
                   href={CALENDAR_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white text-ink border border-card-border px-7 py-3.5 rounded-full text-sm font-bold cursor-pointer no-underline inline-flex items-center"
+                  className="bg-white text-ink border border-card-border px-5 sm:px-7 py-3.5 rounded-full text-sm font-bold cursor-pointer no-underline inline-flex items-center"
                 >
                   Book a call
                 </motion.a>

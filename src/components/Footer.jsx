@@ -32,7 +32,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex gap-16 flex-wrap">
+          <div className="flex gap-10 sm:gap-16 flex-wrap">
             <div>
               <h4 className="text-xs tracking-wide uppercase text-[#7d7a72] m-0 mb-3.5 font-bold">
                 Sections
@@ -58,7 +58,7 @@ export default function Footer() {
                 Email
               </a>
               <a
-                href="#"
+                href="https://github.com/tegaryas"
                 className="block text-[13px] text-[#d8d5cd] no-underline mb-2.5"
               >
                 GitHub
@@ -79,7 +79,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center mt-11 pt-5.5 border-t border-[#2b2a27] text-xs text-[#7d7a72]">
+        <div className="flex justify-between items-center flex-wrap gap-3 mt-11 pt-5.5 border-t border-[#2b2a27] text-xs text-[#7d7a72]">
           <span>&copy; 2026 Tegar Yasindra. All rights reserved.</span>
           <a href="#top" className="text-[#d8d5cd] no-underline">
             Back to top &uarr;
