@@ -24,7 +24,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#c9c9c9] text-zinc-900 flex flex-col font-mono selection:bg-[#000080] selection:text-white">
+    <div className="min-h-screen bg-[#c9c9c9] text-zinc-900 flex flex-col font-mono selection:bg-[#000080] selection:text-white overflow-x-hidden">
       {/* Top Retro Control Navbar */}
       <RetroNavbar
         currentView={currentView}
@@ -34,15 +34,15 @@ export default function App() {
         onOpenPhone={() => setPhoneOpen(true)}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-1 flex flex-col justify-center items-center p-3 sm:p-6 md:p-8">
+      {/* Main Content Area (Responsive padding) */}
+      <main className="flex-1 flex flex-col justify-center items-center p-1 sm:p-4 md:p-6 w-full">
         {currentView === "tv" && (
           <div className="w-full max-w-5xl mx-auto flex flex-col items-center">
             {/* Header info badge */}
-            <div className="mb-3 text-center">
-              <span className="inline-block px-3 py-1 bg-[#d4d0c8] retro-border-outset text-xs font-bold text-zinc-800 shadow-sm">
-                📺 INTERACTIVE CRT WORKSTATION · CLICK SCREENS & OBJECTS TO
-                EXPLORE
+            <div className="mb-2 sm:mb-3 text-center px-1">
+              <span className="inline-block px-2.5 sm:px-3 py-0.5 sm:py-1 bg-[#d4d0c8] retro-border-outset text-[10px] sm:text-xs font-bold text-zinc-800 shadow-xs">
+                <span className="sm:hidden">📺 TAP SCREENS OR DECK BUTTONS TO EXPLORE</span>
+                <span className="hidden sm:inline">📺 INTERACTIVE CRT WORKSTATION · CLICK SCREENS & OBJECTS TO EXPLORE</span>
               </span>
             </div>
 
@@ -78,12 +78,11 @@ export default function App() {
       </main>
 
       {/* Footer Info Strip */}
-      <footer className="bg-[#d4d0c8] retro-border-outset px-4 py-2 text-center text-[11px] text-zinc-600 font-retro-mono flex flex-wrap justify-between items-center gap-2">
+      <footer className="bg-[#d4d0c8] retro-border-outset px-3 sm:px-4 py-2 text-center text-[10px] sm:text-[11px] text-zinc-600 font-retro-mono flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-1.5 shrink-0">
         <div>
-          © {new Date().getFullYear()} Tegar Yasindra · Fullstack & Mobile
-          Engineer
+          © {new Date().getFullYear()} Tegar Yasindra · Fullstack & Mobile Engineer
         </div>
-        <div className="flex gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <a
             href="https://github.com/tegaryas"
             target="_blank"
@@ -112,16 +111,25 @@ export default function App() {
       </footer>
 
       {/* Global Modals */}
-      <RetroPhoneModal isOpen={phoneOpen} onClose={() => setPhoneOpen(false)} />
+      <RetroPhoneModal
+        isOpen={phoneOpen}
+        onClose={() => setPhoneOpen(false)}
+      />
 
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
       />
 
-      <RetroHelpModal isOpen={helpOpen} onClose={() => setHelpOpen(false)} />
+      <RetroHelpModal
+        isOpen={helpOpen}
+        onClose={() => setHelpOpen(false)}
+      />
 
-      <RetroTechModal isOpen={techOpen} onClose={() => setTechOpen(false)} />
+      <RetroTechModal
+        isOpen={techOpen}
+        onClose={() => setTechOpen(false)}
+      />
     </div>
   );
 }

@@ -12,7 +12,14 @@ export default function TegarDesktop({
     experience: false,
     techStack: false,
     howIWork: false,
-    contact: false,
+    about: false,
+  });
+
+  const [maximizedWindows, setMaximizedWindows] = useState({
+    projects: false,
+    experience: false,
+    techStack: false,
+    howIWork: false,
     about: false,
   });
 
@@ -54,22 +61,29 @@ export default function TegarDesktop({
     }));
   };
 
+  const toggleMaximize = (id) => {
+    retroAudio.playClick();
+    setMaximizedWindows((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   const desktopIcons = [
     { id: "projects", label: "Projects.exe", icon: "📁" },
     { id: "experience", label: "Resume.doc", icon: "💼" },
     { id: "techStack", label: "TechStack.sys", icon: "⚙️" },
     { id: "howIWork", label: "Process.txt", icon: "📋" },
-    { id: "contact", label: "Contact.app", icon: "☎️" },
     { id: "about", label: "TegarBio.txt", icon: "👤" },
   ];
 
   return (
-    <div className="relative w-full min-h-[640px] md:h-[720px] bg-[#008080] retro-border-inset rounded-lg overflow-hidden flex flex-col font-mono text-xs select-none shadow-2xl">
+    <div className="relative w-full min-h-[580px] sm:min-h-[640px] md:h-[720px] bg-[#008080] retro-border-inset rounded-lg overflow-hidden flex flex-col font-mono text-xs select-none shadow-2xl">
       {/* ========================================================================= */}
       {/* TOP DESKTOP MENU BAR */}
       {/* ========================================================================= */}
       <div className="h-7 bg-[#d4d0c8] retro-border-outset px-2 flex items-center justify-between z-40 text-zinc-900 text-xs">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <button
             onClick={() => {
               retroAudio.playClick();
@@ -77,8 +91,8 @@ export default function TegarDesktop({
             }}
             className="retro-button px-2 py-0.5 font-bold flex items-center gap-1 bg-[#c0c0c0]"
           >
-            <span className="text-sm">🪟</span>
-            <span className="font-pixel">Start</span>
+            <span className="text-sm leading-none">🪟</span>
+            <span className="font-pixel text-[11px] sm:text-xs">Start</span>
           </button>
 
           <span className="text-zinc-400">|</span>
@@ -88,30 +102,31 @@ export default function TegarDesktop({
               retroAudio.playClick();
               onReturnToTv();
             }}
-            className="retro-button px-2 py-0.5 flex items-center gap-1 text-[11px]"
+            className="retro-button px-1.5 sm:px-2 py-0.5 flex items-center gap-1 text-[10px] sm:text-[11px]"
           >
             <span>📺</span>
-            <span>Switch to TV Room</span>
+            <span className="hidden sm:inline">Switch to TV Room</span>
+            <span className="sm:hidden">TV Room</span>
           </button>
         </div>
 
-        <div className="flex items-center gap-3 font-retro-mono text-[11px]">
-          <span className="hidden sm:inline text-zinc-600">
+        <div className="flex items-center gap-2 sm:gap-3 font-retro-mono text-[10px] sm:text-[11px]">
+          <span className="hidden md:inline text-zinc-600">
             TegarOS 98 · v2.0
           </span>
-          <div className="px-2 py-0.5 bg-white retro-border-inset font-bold">
+          <div className="px-1.5 sm:px-2 py-0.5 bg-white retro-border-inset font-bold">
             {timeStr || "12:00"}
           </div>
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* START MENU POPUP */}
+      {/* START MENU POPUP (Responsive anchor) */}
       {/* ========================================================================= */}
       {startMenuOpen && (
-        <div className="absolute top-7 left-2 w-56 bg-[#d4d0c8] retro-border-outset shadow-2xl z-50 p-1 flex">
+        <div className="absolute top-7 left-1 sm:left-2 w-52 sm:w-56 bg-[#d4d0c8] retro-border-outset shadow-2xl z-50 p-1 flex animate-in fade-in">
           {/* Side Banner */}
-          <div className="w-7 bg-[#000080] text-white flex items-end justify-center py-3 font-pixel text-xs font-bold tracking-widest uppercase [writing-mode:vertical-rl] rotate-180">
+          <div className="w-6 sm:w-7 bg-[#000080] text-white flex items-end justify-center py-3 font-pixel text-[10px] sm:text-xs font-bold tracking-widest uppercase [writing-mode:vertical-rl] rotate-180">
             TEGAR OS
           </div>
 
@@ -138,7 +153,7 @@ export default function TegarDesktop({
               }}
               className="w-full text-left px-2 py-1.5 hover:bg-[#000080] hover:text-white flex items-center gap-2 text-xs"
             >
-              <span>📞</span>
+              <span>☎</span>
               <span>Direct Hotline</span>
             </button>
 
@@ -159,19 +174,19 @@ export default function TegarDesktop({
       {/* ========================================================================= */}
       {/* DESKTOP WORKSPACE AREA */}
       {/* ========================================================================= */}
-      <div className="relative flex-1 p-4 overflow-hidden">
-        {/* Desktop Icons Grid */}
-        <div className="grid grid-flow-col grid-rows-4 gap-4 w-fit z-10 relative">
+      <div className="relative flex-1 p-2 sm:p-4 overflow-hidden">
+        {/* Desktop Icons (Responsive Grid for Mobile & Tablet) */}
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-flow-col md:grid-rows-4 gap-2 sm:gap-4 w-full md:w-fit z-10 relative">
           {desktopIcons.map((item) => (
             <button
               key={item.id}
               onClick={() => toggleWindow(item.id)}
-              className="flex flex-col items-center w-20 p-2 text-white hover:bg-white/10 rounded cursor-pointer group text-center focus:outline-dotted focus:outline-1"
+              className="flex flex-col items-center p-1.5 sm:p-2 text-white hover:bg-white/10 rounded cursor-pointer group text-center focus:outline-dotted focus:outline-1"
             >
-              <span className="text-3xl mb-1 group-hover:scale-110 transition-transform">
+              <span className="text-2xl sm:text-3xl mb-1 group-hover:scale-110 transition-transform">
                 {item.icon}
               </span>
-              <span className="font-retro-mono text-[11px] leading-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] bg-black/40 px-1 py-0.5 rounded-xs">
+              <span className="font-retro-mono text-[9px] sm:text-[11px] leading-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] bg-black/50 px-1 py-0.5 rounded-xs truncate max-w-full">
                 {item.label}
               </span>
             </button>
@@ -183,12 +198,12 @@ export default function TegarDesktop({
               retroAudio.playClick();
               onReturnToTv();
             }}
-            className="flex flex-col items-center w-20 p-2 text-white hover:bg-white/10 rounded cursor-pointer group text-center"
+            className="flex flex-col items-center p-1.5 sm:p-2 text-white hover:bg-white/10 rounded cursor-pointer group text-center"
           >
-            <span className="text-3xl mb-1 group-hover:scale-110 transition-transform">
+            <span className="text-2xl sm:text-3xl mb-1 group-hover:scale-110 transition-transform">
               📺
             </span>
-            <span className="font-retro-mono text-[11px] leading-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] bg-black/40 px-1 py-0.5 rounded-xs">
+            <span className="font-retro-mono text-[9px] sm:text-[11px] leading-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] bg-black/50 px-1 py-0.5 rounded-xs">
               TV_Room.lnk
             </span>
           </button>
@@ -200,9 +215,11 @@ export default function TegarDesktop({
         {openWindows.projects && (
           <div
             onClick={() => focusWindow("projects")}
-            className={`absolute top-6 left-6 right-6 md:left-24 md:right-16 max-h-[85%] bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col ${
-              activeWindow === "projects" ? "z-30" : "z-20 opacity-95"
-            }`}
+            className={`absolute bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col transition-all duration-150 ${
+              maximizedWindows.projects
+                ? "inset-0 z-30"
+                : "inset-1 sm:inset-3 md:top-6 md:bottom-8 md:left-16 md:right-12 z-30"
+            } ${activeWindow === "projects" ? "z-30" : "z-20 opacity-95"}`}
           >
             {/* Title Bar */}
             <div
@@ -210,30 +227,37 @@ export default function TegarDesktop({
                 activeWindow === "projects" ? "bg-[#000080]" : "bg-[#808080]"
               }`}
             >
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 truncate">
                 <span>📁</span>
-                <span>PROJECTS.EXE — Featured Works</span>
+                <span className="truncate">PROJECTS.EXE — Featured Works</span>
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  onClick={() => toggleMaximize("projects")}
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
+                  title="Maximize/Restore"
+                >
+                  {maximizedWindows.projects ? "❐" : "口"}
+                </button>
                 <button
                   onClick={() => closeWindow("projects")}
-                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[10px] flex items-center justify-center retro-border-outset"
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
                 >
                   ✕
                 </button>
               </div>
             </div>
 
-            {/* Content */}
-            <div className="p-3 overflow-y-auto space-y-3 bg-[#e8e4dc]">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {/* Content (Responsive Cards Grid) */}
+            <div className="p-2 sm:p-3 overflow-y-auto space-y-3 bg-[#e8e4dc] flex-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3">
                 {portfolioData.projects.map((proj) => (
                   <div
                     key={proj.id}
                     className="bg-white retro-border-outset p-2 flex flex-col justify-between"
                   >
                     <div>
-                      <div className="relative h-28 bg-black overflow-hidden retro-border-inset mb-2">
+                      <div className="relative h-24 sm:h-28 bg-black overflow-hidden retro-border-inset mb-2">
                         <img
                           src={proj.image}
                           alt={proj.title}
@@ -244,7 +268,7 @@ export default function TegarDesktop({
                         </span>
                       </div>
 
-                      <div className="font-bold text-sm text-zinc-900 font-pixel">
+                      <div className="font-bold text-xs sm:text-sm text-zinc-900 font-pixel">
                         {proj.title}
                       </div>
                       <div className="text-[10px] text-zinc-500 font-retro-mono mb-1">
@@ -255,7 +279,7 @@ export default function TegarDesktop({
                       </p>
                     </div>
 
-                    <div className="mt-3 pt-2 border-t border-zinc-200 flex justify-between items-center">
+                    <div className="mt-2.5 pt-2 border-t border-zinc-200 flex justify-between items-center gap-1.5">
                       <button
                         onClick={() => onOpenProjectDetail(proj)}
                         className="retro-button px-2 py-1 text-[10px] font-bold"
@@ -284,35 +308,45 @@ export default function TegarDesktop({
         {openWindows.experience && (
           <div
             onClick={() => focusWindow("experience")}
-            className={`absolute top-12 left-10 right-10 md:left-32 md:right-24 max-h-[80%] bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col ${
-              activeWindow === "experience" ? "z-30" : "z-20 opacity-95"
-            }`}
+            className={`absolute bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col transition-all duration-150 ${
+              maximizedWindows.experience
+                ? "inset-0 z-30"
+                : "inset-1 sm:inset-3 md:top-8 md:bottom-8 md:left-20 md:right-16 z-30"
+            } ${activeWindow === "experience" ? "z-30" : "z-20 opacity-95"}`}
           >
             <div
               className={`px-2 py-1 flex items-center justify-between text-white font-bold text-xs select-none ${
                 activeWindow === "experience" ? "bg-[#000080]" : "bg-[#808080]"
               }`}
             >
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 truncate">
                 <span>💼</span>
-                <span>RESUME.DOC — Career Timeline</span>
+                <span className="truncate">RESUME.DOC — Career Timeline</span>
               </div>
-              <button
-                onClick={() => closeWindow("experience")}
-                className="w-4 h-4 bg-[#d4d0c8] text-black text-[10px] flex items-center justify-center retro-border-outset"
-              >
-                ✕
-              </button>
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  onClick={() => toggleMaximize("experience")}
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
+                >
+                  {maximizedWindows.experience ? "❐" : "口"}
+                </button>
+                <button
+                  onClick={() => closeWindow("experience")}
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
-            <div className="p-4 overflow-y-auto space-y-3 bg-[#e8e4dc]">
+            <div className="p-3 sm:p-4 overflow-y-auto space-y-2.5 sm:space-y-3 bg-[#e8e4dc] flex-1">
               {portfolioData.experience.map((exp, idx) => (
                 <div
                   key={idx}
-                  className="p-3 bg-white retro-border-inset space-y-1"
+                  className="p-2.5 sm:p-3 bg-white retro-border-inset space-y-1"
                 >
-                  <div className="flex justify-between items-baseline flex-wrap">
-                    <span className="font-bold text-zinc-900 font-pixel text-sm">
+                  <div className="flex justify-between items-baseline flex-wrap gap-1">
+                    <span className="font-bold text-zinc-900 font-pixel text-xs sm:text-sm">
                       {exp.role} · {exp.company}
                     </span>
                     <span className="text-[10px] text-zinc-500 font-retro-mono">
@@ -334,32 +368,42 @@ export default function TegarDesktop({
         {openWindows.techStack && (
           <div
             onClick={() => focusWindow("techStack")}
-            className={`absolute top-16 left-8 right-8 md:left-36 md:right-32 max-h-[80%] bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col ${
-              activeWindow === "techStack" ? "z-30" : "z-20 opacity-95"
-            }`}
+            className={`absolute bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col transition-all duration-150 ${
+              maximizedWindows.techStack
+                ? "inset-0 z-30"
+                : "inset-1 sm:inset-3 md:top-10 md:bottom-8 md:left-24 md:right-20 z-30"
+            } ${activeWindow === "techStack" ? "z-30" : "z-20 opacity-95"}`}
           >
             <div
               className={`px-2 py-1 flex items-center justify-between text-white font-bold text-xs select-none ${
                 activeWindow === "techStack" ? "bg-[#000080]" : "bg-[#808080]"
               }`}
             >
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 truncate">
                 <span>⚙️</span>
-                <span>TECHSTACK.SYS — System Components</span>
+                <span className="truncate">TECHSTACK.SYS — System Components</span>
               </div>
-              <button
-                onClick={() => closeWindow("techStack")}
-                className="w-4 h-4 bg-[#d4d0c8] text-black text-[10px] flex items-center justify-center retro-border-outset"
-              >
-                ✕
-              </button>
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  onClick={() => toggleMaximize("techStack")}
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
+                >
+                  {maximizedWindows.techStack ? "❐" : "口"}
+                </button>
+                <button
+                  onClick={() => closeWindow("techStack")}
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
-            <div className="p-4 overflow-y-auto space-y-3 bg-[#e8e4dc]">
-              <div className="text-xs font-bold text-zinc-800 font-retro-mono">
+            <div className="p-3 sm:p-4 overflow-y-auto space-y-3 bg-[#e8e4dc] flex-1">
+              <div className="text-[11px] sm:text-xs font-bold text-zinc-800 font-retro-mono">
                 INSTALLED HARDWARE & SOFTWARE MODULES:
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                 {portfolioData.techStack.map((item, idx) => (
                   <div
                     key={idx}
@@ -387,30 +431,40 @@ export default function TegarDesktop({
         {openWindows.howIWork && (
           <div
             onClick={() => focusWindow("howIWork")}
-            className={`absolute top-20 left-10 right-10 md:left-40 md:right-36 max-h-[80%] bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col ${
-              activeWindow === "howIWork" ? "z-30" : "z-20 opacity-95"
-            }`}
+            className={`absolute bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col transition-all duration-150 ${
+              maximizedWindows.howIWork
+                ? "inset-0 z-30"
+                : "inset-1 sm:inset-3 md:top-12 md:bottom-8 md:left-28 md:right-24 z-30"
+            } ${activeWindow === "howIWork" ? "z-30" : "z-20 opacity-95"}`}
           >
             <div
               className={`px-2 py-1 flex items-center justify-between text-white font-bold text-xs select-none ${
                 activeWindow === "howIWork" ? "bg-[#000080]" : "bg-[#808080]"
               }`}
             >
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 truncate">
                 <span>📋</span>
-                <span>PROCESS.TXT — 5-Stage Engineering Workflow</span>
+                <span className="truncate">PROCESS.TXT — 5-Stage Engineering Workflow</span>
               </div>
-              <button
-                onClick={() => closeWindow("howIWork")}
-                className="w-4 h-4 bg-[#d4d0c8] text-black text-[10px] flex items-center justify-center retro-border-outset"
-              >
-                ✕
-              </button>
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  onClick={() => toggleMaximize("howIWork")}
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
+                >
+                  {maximizedWindows.howIWork ? "❐" : "口"}
+                </button>
+                <button
+                  onClick={() => closeWindow("howIWork")}
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
-            <div className="p-4 overflow-y-auto space-y-2 bg-[#e8e4dc]">
+            <div className="p-3 sm:p-4 overflow-y-auto space-y-2 bg-[#e8e4dc] flex-1">
               {portfolioData.processSteps.map((step) => (
-                <div key={step.number} className="p-2.5 bg-white retro-border-inset">
+                <div key={step.number} className="p-2 sm:p-2.5 bg-white retro-border-inset">
                   <div className="font-bold text-zinc-900 font-pixel text-xs">
                     {step.number} · {step.title}
                   </div>
@@ -429,38 +483,48 @@ export default function TegarDesktop({
         {openWindows.about && (
           <div
             onClick={() => focusWindow("about")}
-            className={`absolute top-14 left-8 right-8 md:left-28 md:right-28 max-h-[80%] bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col ${
-              activeWindow === "about" ? "z-30" : "z-20 opacity-95"
-            }`}
+            className={`absolute bg-[#d4d0c8] retro-border-outset shadow-2xl flex flex-col transition-all duration-150 ${
+              maximizedWindows.about
+                ? "inset-0 z-30"
+                : "inset-1 sm:inset-3 md:top-14 md:bottom-8 md:left-24 md:right-24 z-30"
+            } ${activeWindow === "about" ? "z-30" : "z-20 opacity-95"}`}
           >
             <div
               className={`px-2 py-1 flex items-center justify-between text-white font-bold text-xs select-none ${
                 activeWindow === "about" ? "bg-[#000080]" : "bg-[#808080]"
               }`}
             >
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 truncate">
                 <span>👤</span>
-                <span>TEGARBIO.TXT — Personal Profile</span>
+                <span className="truncate">TEGARBIO.TXT — Personal Profile</span>
               </div>
-              <button
-                onClick={() => closeWindow("about")}
-                className="w-4 h-4 bg-[#d4d0c8] text-black text-[10px] flex items-center justify-center retro-border-outset"
-              >
-                ✕
-              </button>
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  onClick={() => toggleMaximize("about")}
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
+                >
+                  {maximizedWindows.about ? "❐" : "口"}
+                </button>
+                <button
+                  onClick={() => closeWindow("about")}
+                  className="w-4 h-4 bg-[#d4d0c8] text-black text-[9px] flex items-center justify-center retro-border-outset"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
-            <div className="p-4 overflow-y-auto bg-white retro-border-inset m-2 space-y-2">
-              <div className="font-bold font-pixel text-base text-zinc-900">
+            <div className="p-3 sm:p-4 overflow-y-auto bg-white retro-border-inset m-2 space-y-2 flex-1">
+              <div className="font-bold font-pixel text-sm sm:text-base text-zinc-900">
                 Tegar Yasindra
               </div>
-              <div className="text-xs text-zinc-600 font-retro-mono">
+              <div className="text-[11px] sm:text-xs text-zinc-600 font-retro-mono">
                 {portfolioData.profile.title} · {portfolioData.profile.location}
               </div>
               <p className="text-xs text-zinc-800 leading-relaxed pt-2 border-t border-zinc-200">
                 {portfolioData.profile.bio}
               </p>
-              <div className="p-2 bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs">
+              <div className="p-2 bg-emerald-50 text-emerald-800 border border-emerald-300 text-[11px]">
                 ★ {portfolioData.profile.status}
               </div>
             </div>
@@ -471,24 +535,24 @@ export default function TegarDesktop({
       {/* ========================================================================= */}
       {/* BOTTOM TASKBAR */}
       {/* ========================================================================= */}
-      <div className="h-8 bg-[#d4d0c8] retro-border-outset px-2 flex items-center gap-2 z-40 text-xs">
+      <div className="h-8 bg-[#d4d0c8] retro-border-outset px-2 flex items-center gap-1.5 z-40 text-xs shrink-0">
         <button
           onClick={() => setStartMenuOpen(!startMenuOpen)}
-          className="retro-button px-2.5 py-1 font-bold flex items-center gap-1 bg-[#c0c0c0]"
+          className="retro-button px-2 sm:px-2.5 py-1 font-bold flex items-center gap-1 bg-[#c0c0c0] shrink-0"
         >
-          <span>🪟</span>
-          <span className="font-pixel">Start</span>
+          <span className="leading-none">🪟</span>
+          <span className="font-pixel text-[11px]">Start</span>
         </button>
 
-        {/* Open Windows Buttons */}
-        <div className="flex items-center gap-1 flex-1 overflow-x-auto">
+        {/* Open Windows Buttons (Horizontally scrollable on mobile) */}
+        <div className="flex items-center gap-1 flex-1 overflow-x-auto scrollbar-none py-0.5">
           {Object.entries(openWindows).map(([key, isOpen]) => {
             if (!isOpen) return null;
             return (
               <button
                 key={key}
                 onClick={() => focusWindow(key)}
-                className={`retro-button px-2 py-0.5 text-[11px] flex items-center gap-1 truncate max-w-[130px] ${
+                className={`retro-button px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] flex items-center gap-1 shrink-0 ${
                   activeWindow === key ? "bg-[#b0b0b0] font-bold" : ""
                 }`}
               >
@@ -504,12 +568,11 @@ export default function TegarDesktop({
             retroAudio.playRing();
             onOpenPhoneModal();
           }}
-          className="retro-button px-2 py-0.5 text-[11px] font-bold bg-pink-100 hover:bg-pink-200"
+          className="retro-button px-2 py-0.5 text-[10px] sm:text-[11px] font-bold bg-pink-100 hover:bg-pink-200 shrink-0"
         >
-          ☎ Call Tegar
+          ☎ Call
         </button>
       </div>
     </div>
   );
 }
-

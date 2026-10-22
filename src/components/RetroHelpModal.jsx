@@ -4,10 +4,10 @@ export default function RetroHelpModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
-      <div className="w-full max-w-md bg-[#d4d0c8] retro-border-outset shadow-2xl overflow-hidden font-mono text-xs">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
+      <div className="w-full max-w-md max-h-[92vh] flex flex-col bg-[#d4d0c8] retro-border-outset shadow-2xl overflow-hidden font-mono text-xs">
         {/* Title Bar */}
-        <div className="bg-[#000080] text-white px-2 py-1 flex items-center justify-between select-none font-bold">
+        <div className="bg-[#000080] text-white px-2 py-1 flex items-center justify-between select-none font-bold shrink-0">
           <div className="flex items-center gap-1.5">
             <span>❓</span>
             <span>STATION MANUAL & GUIDE</span>
@@ -24,42 +24,36 @@ export default function RetroHelpModal({ isOpen, onClose }) {
         </div>
 
         {/* Content */}
-        <div className="p-4 space-y-3 text-zinc-900 bg-[#e8e4dc]">
-          <div className="p-2.5 bg-white retro-border-inset">
-            <div className="font-bold text-sm text-zinc-900 font-pixel">
+        <div className="p-3 sm:p-4 space-y-3 text-zinc-900 bg-[#e8e4dc] overflow-y-auto flex-1">
+          <div className="p-2 sm:p-2.5 bg-white retro-border-inset">
+            <div className="font-bold text-xs sm:text-sm text-zinc-900 font-pixel">
               Tegar Yasindra Workstation
             </div>
-            <div className="text-[11px] text-zinc-600 font-retro-mono mt-0.5">
+            <div className="text-[10px] sm:text-[11px] text-zinc-600 font-retro-mono mt-0.5">
               Fullstack (Go/Python) & Mobile (Flutter) Engineer
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <div className="font-bold text-zinc-800 font-retro-mono">
+            <div className="font-bold text-zinc-800 font-retro-mono text-[11px]">
               STATION CONTROLS GUIDE:
             </div>
-            <ul className="space-y-1 text-[11px] text-zinc-700 bg-white p-2.5 retro-border-inset">
+            <ul className="space-y-1.5 text-[10px] sm:text-[11px] text-zinc-700 bg-white p-2.5 retro-border-inset">
               <li>
-                📺 <strong className="text-zinc-900">Main Center TV:</strong>{" "}
-                Click &ldquo;CLICK TO ENTER&rdquo; to launch TegarOS virtual
-                desktop.
+                📺 <strong className="text-zinc-900">Main Center TV:</strong> Tap
+                &ldquo;CLICK TO ENTER&rdquo; or the Station Deck button to launch TegarOS virtual desktop.
               </li>
               <li>
-                ☎{" "}
-                <strong className="text-zinc-900">
-                  Telephone / Pink Note:
-                </strong>{" "}
-                Click the phone or &ldquo;pick up!&rdquo; note to call/message
-                Tegar directly.
+                ☎ <strong className="text-zinc-900">Telephone / Pink Note:</strong> Tap
+                the phone or &ldquo;pick up!&rdquo; note to call/message Tegar directly.
               </li>
               <li>
-                🎛 <strong className="text-zinc-900">TV Remote:</strong> Click
-                buttons to cycle channels, power off CRT screens, or mute retro
-                audio.
+                🎛 <strong className="text-zinc-900">TV Remote / Deck:</strong> Tap buttons
+                to cycle channels, power off CRT screens, or mute retro audio.
               </li>
               <li>
-                📁 <strong className="text-zinc-900">Bottom 3 TVs:</strong>{" "}
-                Direct inspectors for Sribuu, Fintelite, and Anycheck.
+                📁 <strong className="text-zinc-900">Bottom 3 TVs:</strong> Direct
+                inspectors for Sribuu, Fintelite, and Anycheck.
               </li>
             </ul>
           </div>
@@ -73,7 +67,7 @@ export default function RetroHelpModal({ isOpen, onClose }) {
                 retroAudio.playClick();
                 onClose();
               }}
-              className="retro-button px-4 py-1 font-bold text-xs"
+              className="retro-button px-3 sm:px-4 py-1 font-bold text-xs"
             >
               Acknowledge ✓
             </button>
